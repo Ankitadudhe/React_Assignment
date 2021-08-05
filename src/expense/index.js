@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ExpenseItem from './ExpenseItem';
 import './expense.css';
 import ExpenseForm from './ExpenseForm'
+import ExpenseFilter from './ExpenseFilter'
 function Expense(){
+    const [filterYear,setFilterYear]=useState('2021');
     const Data=[
         {id:1,title:'Apple',price:'$450',date:new Date(2021,5,12)},
         {id:2,title:'Mango',price:'$350',date:new Date(2021,7,12)},
@@ -10,9 +12,14 @@ function Expense(){
         {id:4,title:'Banana',price:'$50',date:new Date(2021,6,2)},
 
     ]
+    const changeFilter=(selectedYear)=>{
+        setFilterYear(selectedYear)
+    console.log("selectedYear",selectedYear);
+    }
     return(
         <div className="expenses">
             <ExpenseForm/>
+            <ExpenseFilter filterYear={filterYear} changeFilter={changeFilter}/>
             <ExpenseItem 
             title={Data[0].title}
             price={Data[0].price}
