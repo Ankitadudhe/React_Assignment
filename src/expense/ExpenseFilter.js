@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './expenseFilter.css';
 
 const ExpensesFilter = (props) => {
