@@ -9,7 +9,7 @@ return(
      <ul>
        
         {props.users.map((user)=>(
-            <li key={user.id}>{user.name} {user.age > 0 ? `(${user.age} years old `:null }</li>
+            <li key={user.id}>{user.name} {user.age > 0 ? `(${user.age} years old )`:null }</li>
         ))}
        
     </ul>
