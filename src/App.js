@@ -1,28 +1,31 @@
-import React, { useState } from 'react';
-import Header from './components/Layout/Header'
-import Meals from './components/Meals/Meals';
-import Cart from './components/Cart/Cart';
-import CartProvider from './store/CartProvider';
+import React, { useCallback, useState } from 'react';
+import Button from './components/UI/Button/Button'
+import './App.css';
+import Demo from './components/Demo'
 function App() {
-const [cartIsShown,setCartIsShown]=useState(false);
+  const [showParagragh,setShowParagragh]=useState(false);
+  const [allowToggle,setAllowToggle]=useState(false);
 
-const showCartHandler=()=>{
-  setCartIsShown(true)
-}
-const hideCartHandler=()=>{
-  setCartIsShown(false)
-}
+  const onClickHandler=useCallback(()=>{
+    if(allowToggle){
+      setShowParagragh(prevshowParagragh=>!prevshowParagragh)
+      }
+  },[allowToggle]);
+
+  const allowToggleHandler=()=>{
+    setAllowToggle(true);
+  }
   return (
-    // <CartProvider>
-      <>
-     {cartIsShown && <Cart hideCartHandler={hideCartHandler}/>}
-      <Header  showCartHandler={showCartHandler}/>
-      <main>
-        <Meals/>
-      </main>
-      </>
-      // </CartProvider>
-      );
+    <div className="app">
+      <h1>Hi there!</h1>
+     {/* {showParagragh && <p>This is new</p>} */}
+     <Demo show={showParagragh}/>
+     {/* React.memo() */}
+     {/* <Demo show={false}/> */}
+     <Button onClick={allowToggleHandler}>Allows Toggle</Button>
+     <Button onClick={onClickHandler}>Toggle paragragh</Button>
+    </div>
+  );
 }
 
 export default App;
